@@ -1,25 +1,44 @@
-﻿
-using System.Text;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 
 namespace PTC
 {
     public static class HtmlExtensionsImage
     {
+
         public static MvcHtmlString Image(this HtmlHelper htmlHelper,
-            string src,
-            string altText, 
-            string cssClass, 
-            string name,
-            object htmlAttributes = null)
+           string src,
+           string altText,                      
+           object htmlAttributes = null)
+
+        {
+            return Image(htmlHelper, src, altText, string.Empty, string.Empty, htmlAttributes);
+        }
+
+        public static MvcHtmlString Image(this HtmlHelper htmlHelper,
+           string src,
+           string altText,
+           string cssClass,
+           object htmlAttributes = null)
+
+        {
+            return Image(htmlHelper, src, altText, cssClass, string.Empty, htmlAttributes);
+        }
+
+        public static MvcHtmlString Image(this HtmlHelper htmlHelper,
+        string src,
+        string altText,
+        string cssClass,
+        string name,
+        object htmlAttributes = null)
         {
             TagBuilder tb = new TagBuilder("img");
 
             tb.MergeAttribute("src", src);
             tb.MergeAttribute("alt", altText);
 
-            if (!string.IsNullOrWhiteSpace(cssClass)) {
+            if (!string.IsNullOrWhiteSpace(cssClass))
+            {
                 tb.AddCssClass(cssClass);
             }
 
@@ -32,7 +51,7 @@ namespace PTC
 
             tb.MergeAttributes(HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
 
-           return MvcHtmlString.Create(tb.ToString(TagRenderMode.SelfClosing));
+            return MvcHtmlString.Create(tb.ToString(TagRenderMode.SelfClosing));
         }
     }
 }
