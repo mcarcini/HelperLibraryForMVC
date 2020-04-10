@@ -11,7 +11,8 @@ namespace PTC
             string src,
             string altText, 
             string cssClass, 
-            string name)
+            string name,
+            object htmlAttributes = null)
         {
             TagBuilder tb = new TagBuilder("img");
 
@@ -29,7 +30,9 @@ namespace PTC
                 tb.MergeAttribute("name", name);
             }
 
-                return MvcHtmlString.Create(tb.ToString(TagRenderMode.SelfClosing));
+            tb.MergeAttributes(HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
+
+           return MvcHtmlString.Create(tb.ToString(TagRenderMode.SelfClosing));
         }
     }
 }
