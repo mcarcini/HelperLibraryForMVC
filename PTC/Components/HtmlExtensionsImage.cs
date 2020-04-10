@@ -10,7 +10,8 @@ namespace PTC
         public static MvcHtmlString Image(this HtmlHelper htmlHelper,
             string src,
             string altText, 
-            string cssClass)
+            string cssClass, 
+            string name)
         {
             TagBuilder tb = new TagBuilder("img");
 
@@ -21,7 +22,14 @@ namespace PTC
                 tb.AddCssClass(cssClass);
             }
 
-            return MvcHtmlString.Create(tb.ToString(TagRenderMode.SelfClosing));
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                name = TagBuilder.CreateSanitizedId(name);
+                tb.GenerateId(name);
+                tb.MergeAttribute("name", name);
+            }
+
+                return MvcHtmlString.Create(tb.ToString(TagRenderMode.SelfClosing));
         }
     }
 }
