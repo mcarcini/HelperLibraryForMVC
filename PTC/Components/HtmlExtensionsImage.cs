@@ -42,12 +42,7 @@ namespace PTC
                 tb.AddCssClass(cssClass);
             }
 
-            if (!string.IsNullOrWhiteSpace(name))
-            {
-                name = TagBuilder.CreateSanitizedId(name);
-                tb.GenerateId(name);
-                tb.MergeAttribute("name", name);
-            }
+            HtmlExtensionsCommon.AddName(tb, name, name);
 
             tb.MergeAttributes(HtmlHelper.AnonymousObjectToHtmlAttributes(htmlAttributes));
 
