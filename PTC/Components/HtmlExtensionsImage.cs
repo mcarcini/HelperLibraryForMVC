@@ -11,10 +11,12 @@ namespace PTC
             string src,
             string altText)
         {
-            StringBuilder sb = new StringBuilder(512);
-            sb.AppendFormat("<img src='{0}' alt='{1}' />",src,altText);
+            TagBuilder tb = new TagBuilder("img");
 
-            return MvcHtmlString.Create(sb.ToString());
+            tb.MergeAttribute("src", src);
+            tb.MergeAttribute("alt", altText);            
+
+            return MvcHtmlString.Create(tb.ToString(TagRenderMode.SelfClosing));
         }
     }
 }
