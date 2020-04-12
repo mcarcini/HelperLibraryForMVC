@@ -9,17 +9,19 @@ namespace PTC
     public static class HtmlExtensionsButton
     {
         public static MvcHtmlString BoostrapButton(this HtmlHelper htmlHelper,
-            string innerHtml, 
+            string innerHtml,
             string cssClass,
             string name,
-            string id)
+            string id,
+            HtmlExtensionsCommon.HtmlButtonTypes buttonType = HtmlExtensionsCommon.HtmlButtonTypes.submit,
+            object htmlAttributes = null)
         {
             TagBuilder tb = new TagBuilder("button");
 
             if (string.IsNullOrWhiteSpace(cssClass))
             {
                 cssClass = "btn-primary";
-            }            
+            }
 
             tb.AddCssClass(cssClass);
             tb.AddCssClass("btn");
@@ -28,7 +30,20 @@ namespace PTC
 
             tb.InnerHtml = innerHtml;
 
-            tb.MergeAttribute("type", "submit");
+            switch (buttonType)
+            {
+                case HtmlExtensionsCommon.HtmlButtonTypes.submit:
+                    tb.MergeAttribute("type", "submit");
+                    break;
+                case HtmlExtensionsCommon.HtmlButtonTypes.reset:
+                    tb.MergeAttribute("type", "reset");
+                    break;
+                case HtmlExtensionsCommon.HtmlButtonTypes.button:
+                    tb.MergeAttribute("type", "button");
+                    break;
+
+            }
+            
 
             return MvcHtmlString.Create(tb.ToString());
         }

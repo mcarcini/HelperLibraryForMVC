@@ -4,6 +4,13 @@ namespace PTC
 {
     public static class HtmlExtensionsCommon
     {
+        public enum HtmlButtonTypes
+        { 
+            submit,
+            button,
+            reset
+        }
+
         public static void AddName(TagBuilder tb, string name, string id) {
             if (!string.IsNullOrWhiteSpace(name))
             {
