@@ -11,6 +11,24 @@ namespace PTC
             reset
         }
 
+        public enum Html5InputTypes
+        { 
+            text,
+            color,
+            date,
+            datetime,
+            email,
+            month,
+            number,
+            password,
+            range,
+            search,
+            tel,
+            time,
+            url,
+            week
+        }
+
         public static void AddName(TagBuilder tb, string name, string id) {
             if (!string.IsNullOrWhiteSpace(name))
             {

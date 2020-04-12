@@ -116,6 +116,7 @@
     <Compile Include="Components\HtmlExtensionsButton.cs" />
     <Compile Include="Components\HtmlExtensionsCommon.cs" />
     <Compile Include="Components\HtmlExtensionsImage.cs" />
+    <Compile Include="Components\HtmlExtensionsTextBox.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
